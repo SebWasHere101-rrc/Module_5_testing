@@ -12,7 +12,7 @@ Usage: To execute the unit tests:
 
 import unittest
 from unittest.mock import patch
-from src.functions import greet_name_age
+from src.functions import greet_name_age, math_operation, prompt_name_greeting
 
 class TestFunctions(unittest.TestCase):
     def test_greet_name_age_valid_arguements_expected_string(self):
@@ -28,3 +28,77 @@ class TestFunctions(unittest.TestCase):
         #Assert
         self.assertEqual(expected, actual)
 
+    def test_math_operations_addition_return_sum(self):
+        # Arrange
+        operand1 = 10
+        operand2 = 5
+        operation = "+"
+
+        expected = 15.0
+        # Act
+        actual = math_operation(operand1, operand2, operation)
+
+        #Assert
+        self.assertEqual(expected, actual)
+
+        # Arrange, Act, and Assert.
+        # self.assertEqual(15.0, math_operation(10, 5, "+"))
+
+
+    def test_math_operations_subtraction_return_difference(self):
+        # Arrange
+        operand1 = 10
+        operand2 = 5
+        operation = "-"
+
+        expected = 5.0
+        # Act
+        actual = math_operation(operand1, operand2, operation)
+
+        #Assert
+        self.assertEqual(expected, actual)
+
+        # Arrange, Act, and Assert.
+        # self.assertEqual(5.0, math_operation(10, 5, "-"))
+
+    def test_math_operation_invalid_operator_ValueError(self):
+        # Arrange
+        operator1 = 4
+        operator2 = 15
+
+        # use an invalid operator
+        operation = "*"
+        expected = "Invalid operation."
+        
+        
+        # Act and Assert
+        with self.assertRaises(ValueError) as context:
+            math_operation(operator1, operator2, operation)
+        
+        self.assertEqual(expected, str(context.exception))
+
+    def test_prompt_name_greeting_valid_inputs_greetings_returned(self):
+        # builtins.input: allows us to mock input behaviour
+
+        with patch('builtins.input') as mock_input:
+            # Arrange
+            mock_input.side_effect = ["Oliver", "Winnipeg"]
+            expected = "Your name is Oliver and your current city is Winnipeg."
+
+            # Act
+            actual = prompt_name_greeting()
+
+        # Assert
+        self.assertEqual(expected, actual)
+    
+    """
+    def test_prompt_name_greeting_no_mocking_pauses_program(self):
+        # Arrange
+        expected = "Your name is Oliver and your current city is Winnipeg."
+
+        # Act
+        actual = prompt_name_greeting()
+
+        # Assert
+        self.assertEqual(expected, actual)
+    """

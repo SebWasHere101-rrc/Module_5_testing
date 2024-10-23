@@ -71,7 +71,8 @@ def math_operation(operand1: int, operand2: int, operation: str = "+")-> float:
         operand2 (int): The second operand.
         operation (str): The operation to perform, default = "+"
     Returns:
-        None
+        Float
+        
     Raises:
         ValueError:  "Invalid operation." When operation is not + or -.
     """
