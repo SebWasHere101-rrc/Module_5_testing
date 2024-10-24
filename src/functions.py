@@ -85,3 +85,11 @@ def math_operation(operand1: int, operand2: int, operation: str = "+")-> float:
         raise ValueError("Invalid operation.")   
     
     return result
+
+def main():
+    print(prompt_name_greeting())
+    print(grade_outcome(76))
+
+# This is a main guard
+if __name__ == "__main__":
+    main()
